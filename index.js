@@ -61,7 +61,7 @@ async function main() {
 }
 
 async function getDeploymentSource(id) {
-  let path = `/v6/deployments/${id}/files`;
+	let path = `/v7/deployments/${id}/files`;
   if (VERCEL_TEAM) path += `?teamId=${VERCEL_TEAM}`;
   const files = await getJSONFromAPI(path);
   // Get only src directory
