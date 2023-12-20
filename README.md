@@ -1,18 +1,30 @@
-# Get Vercel Source Code
+# Vercel Source Fetcher
 
-<img width="1530" alt="Screen Shot 2021-04-08 at 12 33 31" src="https://user-images.githubusercontent.com/1891339/114068653-88949800-9874-11eb-9083-99b9f5be615a.png">
+![Screenshot](https://user-images.githubusercontent.com/1891339/114068653-88949800-9874-11eb-9083-99b9f5be615a.png)
 
 ## Instructions
 
-1 - Install the dependecies.
+1 - Install the dependencies.
 
-```
-npm i
+```sh
+bun install
 ```
 
-2 - Get your Vercel token at https://vercel.com/account/tokens, copy `.env.sample` as `.env` and update the value:
-
+```sh
+npm install
 ```
+
+```sh
+pnpm install
+```
+
+```sh
+yarn install
+```
+
+2 - Get your Vercel token at <https://vercel.com/account/tokens>, copy `.env.sample` as `.env` and update the value:
+
+```sh
 VERCEL_TOKEN = ""
 # Optionally if using a team account
 VERCEL_TEAM = ""
@@ -20,7 +32,7 @@ VERCEL_TEAM = ""
 
 3 - Run the script and wait until complete.
 
-```
+```sh
 node index.js <VERCEL DEPLOYMENT URL or ID> <DESTINATION>
 ```
 

@@ -1,18 +1,22 @@
 {
-  "name": "get-vercel-sourcecode",
-  "version": "2.0.0",
-  "description": "",
+  "name": "vercel-source-fetcher",
+  "version": "2.0.1",
+  "description": "Download SourceCode from Vercel Project",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Marc Redwerkz",
+	"homepage": "https://getsource.vercel.app",
+  "license": "MIT",
   "dependencies": {
-    "chalk": "^5.0.0",
-    "dotenv": "^16.0.0",
-    "got": "^12.0.1",
-    "ora": "^6.0.1"
+    "dotenv": "^16.3.1",
+    "got": "^14.0.0",
+    "ora": "^7.0.1",
+    "picocolors": "^1.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
