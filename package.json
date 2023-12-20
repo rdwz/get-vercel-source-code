@@ -1,14 +1,14 @@
 {
   "name": "get-vercel-sourcecode",
-  "version": "2.0.0",
-  "description": "",
+  "version": "2.0.1",
+  "description": "Download SourceCode from Vercel Project",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Marc Redwerkz",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^5.0.0",
     "dotenv": "^16.0.0",
