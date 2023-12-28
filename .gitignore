@@ -1,9 +1,5 @@
-.DS_Store
+.env
+.vercel
 node_modules
 *.log
-.DS_Store
-.env
-
-dist/
-cache/
-es
+*.vercel.app
