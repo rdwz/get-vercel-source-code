@@ -7,26 +7,20 @@
 1 - Install the dependencies.
 
 ```sh
-bun install
-```
-
-```sh
 npm install
 ```
 
-```sh
-pnpm install
-```
+or use recommended package manager Bun
 
 ```sh
-yarn install
+bun install
 ```
 
 2 - Get your Vercel token at <https://vercel.com/account/tokens>, copy `.env.sample` as `.env` and update the value:
 
-```sh
+```text
+# .env
 VERCEL_TOKEN = ""
-# Optionally if using a team account
 VERCEL_TEAM = ""
 ```
 
@@ -39,3 +33,13 @@ node index.js <VERCEL DEPLOYMENT URL or ID> <DESTINATION>
 For example, `node index.js example-5ik51k4n7.vercel.app ../example`.
 
 Or using the id directly, `node index.js dpl_6CR1uw9hBdpWgrMvPkncsTGRC18A ../example`.
+
+## Colophon 📜
+
+### Acknowledgement
+
+This is an updated version of [zehfernandes/get-vercel-source-code](https://github.com/zehfernandes/get-vercel-source-code) th👍
+
+- [Vercel API]
+
+[vercel api]: https://vercel.com/docs/rest-api
