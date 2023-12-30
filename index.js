@@ -101,15 +101,19 @@ async function downloadFile (deploymentId, fileId, destination) {
   let path = `/v7/deployments/${deploymentId}/files/${fileId}`
   if (VERCEL_TEAM) path += `?teamId=${VERCEL_TEAM}`
   const response = await getFromAPI(path)
+async function downloadFile(deploymentId, fileId, destination) {
+  let path = `/v7/deployments/${deploymentId}/files/${fileId}`;
+  if (VERCEL_TEAM) path += `?teamId=${VERCEL_TEAM}`;
+  const response = await getFromAPI(path);
   return new Promise((resolve, reject) => {
-    // console.log(atob(JSON.parse(response.body)["data"]));
-    const encodedValue = JSON.parse(response.body).data
-    const decodedValue = atob(encodedValue)
+    const encodedValue = JSON.parse(response.body).data;
+    const decodedValue = Buffer.from(encodedValue, 'base64'); // Decode base64 to binary buffer
+
     fs.writeFile(destination, decodedValue, function (err) {
-      if (err) reject(err)
-      resolve()
-    })
-  })
+      if (err) reject(err);
+      resolve();
+    });
+  });
 }
 
 /**
@@ -124,6 +128,7 @@ function getFromAPI (path, binary = false) {
     headers: {
       Authorization: `Bearer ${VERCEL_TOKEN}`
     },
+    responseType: 'buffer',
     retry: {
       limit: 0
     }
