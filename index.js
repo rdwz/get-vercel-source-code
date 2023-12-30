@@ -1,14 +1,11 @@
 #!/usr/bin/env node
 
 import 'dotenv/config'
-import * as fs from 'fs'
+import * as fs from 'node:fs'
 import got from 'got'
 import pc from 'picocolors'
 import { oraPromise } from 'ora'
-// import { promisify } from 'node:util'
-// import stream from 'node:stream'
 
-// const pipeline = promisify(stream.pipeline)
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN
 const VERCEL_DEPLOYMENT = process.argv[2]
 const DEST_DIR = process.argv[3] || VERCEL_DEPLOYMENT
@@ -39,10 +36,11 @@ try {
  * @return {Promise<void>} A promise that resolves when the main function completes execution.
  */
 async function main () {
+  console.log(`\n${pc.blue(DEST_DIR)}`)
   const deploymentId = VERCEL_DEPLOYMENT.startsWith('dpl_')
     ? VERCEL_DEPLOYMENT
     : await oraPromise(getDeploymentId(VERCEL_DEPLOYMENT), 'Getting deployment id 🏷️')
-  const srcFiles = await oraPromise(getDeploymentSource(deploymentId), 'Loading source files tree 🗄️')
+  const srcFiles = await oraPromise(getDeploymentSource(deploymentId), 'Loading source files tree 🗃️')
   if (fs.existsSync(DEST_DIR)) fs.rmSync(DEST_DIR, { recursive: true })
   fs.mkdirSync(DEST_DIR)
   Promise.allSettled(
@@ -55,8 +53,9 @@ async function main () {
           return null
         }
         if (file.type === 'file') {
-          return oraPromise(downloadFile(deploymentId, file.uid, pathname), `Downloading ${pc.green(pathname)}`)
+          return oraPromise(downloadFile(deploymentId, file.uid, pathname), `Downloading ${pc.green(new URL('file://' + pathname).pathname)}`)
         }
+        return null
       })
       .filter(Boolean)
   )
@@ -101,19 +100,15 @@ async function downloadFile (deploymentId, fileId, destination) {
   let path = `/v7/deployments/${deploymentId}/files/${fileId}`
   if (VERCEL_TEAM) path += `?teamId=${VERCEL_TEAM}`
   const response = await getFromAPI(path)
-async function downloadFile(deploymentId, fileId, destination) {
-  let path = `/v7/deployments/${deploymentId}/files/${fileId}`;
-  if (VERCEL_TEAM) path += `?teamId=${VERCEL_TEAM}`;
-  const response = await getFromAPI(path);
   return new Promise((resolve, reject) => {
-    const encodedValue = JSON.parse(response.body).data;
-    const decodedValue = Buffer.from(encodedValue, 'base64'); // Decode base64 to binary buffer
+    const encodedValue = JSON.parse(response.body).data
+    const decodedValue = Buffer.from(encodedValue, 'base64') // Decode base64 to binary buffer
 
     fs.writeFile(destination, decodedValue, function (err) {
-      if (err) reject(err);
-      resolve();
-    });
-  });
+      if (err) reject(err)
+      resolve()
+    })
+  })
 }
 
 /**
@@ -160,4 +155,19 @@ function flattenTree ({ name, children = [] }) {
   }))
   const flattenedChildren = childrenNamed.flatMap(flattenTree)
   return [...childrenNamed, ...flattenedChildren]
+}
+
+/**
+ * Retrieves the deployment ID for a given project.
+ *
+ * @param {string} projectName - The name of the project.
+ * @return {string} The ID of the successful deployment.
+ */
+async function getDeploymentId(projectName) {
+  const { deployments } = await getJSONFromAPI(`/v12/projects/${projectName}/deployments?limit=1&sort=created`);
+  const successfulDeployments = deployments.filter((deployment) => deployment.readyState === 'READY');
+  if (successfulDeployments.length > 0) {
+    return successfulDeployments[0].uid;
+  }
+  throw new Error('No successful deployments found for the project');
 }

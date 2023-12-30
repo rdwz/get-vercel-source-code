@@ -1,11 +1,16 @@
 {
   "name": "vercel-source-fetcher",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Download source code from vercel deployment",
-  "main": "index.js",
+  "bin": "./index.js",
   "type": "module",
+  "keywords": [
+    "vercel",
+    "source",
+    "fetcher"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard --fix"
   },
   "author": "Marc Redwerkz",
 	"homepage": "https://getsource.vercel.app",
@@ -15,5 +20,8 @@
     "got": "^14.0.0",
     "ora": "^8.0.1",
     "picocolors": "^1.0.0"
+  },
+  "devDependencies": {
+    "standard": "latest"
   }
 }

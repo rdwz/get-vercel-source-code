@@ -1,6 +1,6 @@
 # Vercel Source Fetcher
 
-![Screenshot](https://user-images.githubusercontent.com/1891339/114068653-88949800-9874-11eb-9083-99b9f5be615a.png)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
 ## Instructions
 
@@ -16,7 +16,7 @@ or use recommended package manager Bun
 bun install
 ```
 
-2 - Get your Vercel token at <https://vercel.com/account/tokens>, copy `.env.sample` as `.env` and update the value:
+2 - Get your Vercel token at <https://vercel.com/account/tokens>, copy `.env.sample` as `.env` and insert token:
 
 ```text
 # .env
@@ -38,8 +38,9 @@ Or using the id directly, `node index.js dpl_6CR1uw9hBdpWgrMvPkncsTGRC18A ../exa
 
 ### Acknowledgement
 
-This is an updated version of [zehfernandes/get-vercel-source-code](https://github.com/zehfernandes/get-vercel-source-code) th👍
+This is an updated version of
 
+- [zehfernandes/get-vercel-source-code](https://github.com/zehfernandes/get-vercel-source-code) 👍
 - [Vercel API]
 
 [vercel api]: https://vercel.com/docs/rest-api
