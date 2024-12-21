@@ -1,42 +1,42 @@
 # Vercel Source Fetcher
 
-![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+[![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
 
 ## Instructions
 
-1 - Install the dependencies.
+1 - Install with recommended package manager `Bun` or any other like `npm`, `pnpm` or `Yarn`
+
 
 ```sh
-npm install
+bun install --global vscdl
 ```
 
-or use recommended package manager Bun
+Or just kickstart it without installation to your system, use `npx`, `pnpx` or `yarn dlx` accordingly 
 
 ```sh
-bun install
+bunx vscdl --help
 ```
 
 2 - Get your Vercel token at <https://vercel.com/account/tokens>, copy `.env.sample` as `.env` and insert token:
 
-```text
+```txt
 # .env
-VERCEL_TOKEN = ""
-VERCEL_TEAM = ""
+VERCEL_TOKEN=
+VERCEL_TEAM=
 ```
 
 3 - Run the script and wait until complete.
 
 ```sh
-node index.js <VERCEL DEPLOYMENT URL or ID> <DESTINATION>
+vscdl <vercel deployment URL or ID> [<destination path>]
 ```
 
-For example, `node index.js example-5ik51k4n7.vercel.app ../example`.
+Examples
 
-Or using the id directly, `node index.js dpl_6CR1uw9hBdpWgrMvPkncsTGRC18A ../example`.
+- Use prod url `vscdl getsource.vercel.app`
+- Or deployment id, `vscdl dpl_id0wn104d ../example`.
 
 ## Colophon 📜
-
-### Acknowledgement
 
 This is an updated version of
 

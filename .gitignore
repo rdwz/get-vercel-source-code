@@ -1,5 +1,8 @@
+*.*/
+dist/
+node_modules/
+.vercel/
+.vscode/
 .env
-.vercel
-node_modules
 *.log
 *.vercel.app
