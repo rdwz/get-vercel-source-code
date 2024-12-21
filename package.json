@@ -1,6 +1,6 @@
 {
   "name": "vscdl",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Download source code from vercel deployment",
   "keywords": [
     "vercel",
